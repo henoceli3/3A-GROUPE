@@ -26,6 +26,7 @@ body{
     padding: 0;
     text-decoration: none;
     font-family: 'Raleway', sans-serif;
+    transition: .3s cubic-bezier(.44,.36,.98,.02);
 }
 
 .top_page{
@@ -320,5 +321,113 @@ body{
     .Why-us_h2{
         width: 100%;
         font-size: 2em;
+    }
+}
+
+/* SERVICES  */
+
+.services{
+    height: auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+.first_line{
+    width: 100%;
+    height: 10em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fisrt_line_item{
+    height: 100%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* border-right: 1px solid #fff; */
+}
+.service_description{
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.service_desc{
+    width: 100%;
+    height: 20em;
+    /* display: none; */
+    display: flex;
+    flex-direction: row;
+    margin-top: 1em;
+}
+.desc_part{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.desc_part--1 button{
+    width: 10em;
+    height: 4em;
+    outline: none;
+    border: none;
+    background: #ff0a53;
+    color: #fff;
+    transition: .3s cubic-bezier(.44,.36,.98,.02);
+}
+.desc_part--1 button:hover{
+    width: 12em;
+    background: #fff;
+    color: #ff0a53;
+    border: 1px solid #ff0a53;
+}
+
+.desc--1 .desc_part--2{
+    background: url(assets/desc_1/Christmas-tree.svg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.desc--2 .desc_part--2{
+    background: url(assets/desc_2/Friends-reference.svg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.desc--3 .desc_part--2{
+    background: url(assets/desc_3/Global-logistics-delivery-network.svg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.desc--4 .desc_part--2{
+    background: url(assets/desc_4/Design-process.svg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.desc--5 .desc_part--2{
+    background: url(assets/desc_5/Statistics.svg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@media (max-width:768px) {
+    .service_desc{
+        flex-direction: column-reverse;
+        height: 40em;
+    }
+    .desc_part{
+        width: 100%;
+        height: 50%;
     }
 }
