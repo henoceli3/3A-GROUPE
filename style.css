@@ -28,12 +28,14 @@ body{
     font-family: 'Raleway', sans-serif;
     transition: .3s cubic-bezier(.44,.36,.98,.02);
 }
-
+ 
+/* ne sert pas a grande chose  */
 .top_page{
     height: auto;
     width: 100%;
 }
 
+/* l'entete de la page  */
 .header{
     background: url(assets/image_processing20230113-20695-1hkyjf6.png);
     background-size: cover;
@@ -44,16 +46,19 @@ body{
     flex-direction: column;
     position: relative;
 }
+/* le conteneur du menu et du hamburger  */
 .menu_toogle_container{
     height: 4.5em;
     width: 15em;
     background: #ff0a54;
-    margin-top: 4em;
+    margin-top: 2em;
     margin-left: 3em;
     display: flex;
     flex-direction: row;
     z-index: 3;
+    position: fixed;
 }
+/* conteneur du hamburger  */
 .hamburger_container{
     height: 100%;
     width: 30%;
@@ -64,9 +69,19 @@ body{
     align-items: center;
     justify-content: center;
 }
+/* la classe qui permet d'ajouter la couleur rose au hamburger au scroll  */
+.pink{
+    background: #ff0a53;
+}
+.pink .line{
+    background: #fff;
+}
+
 .hamburger_container:hover{
     background: #ff0a54;
 }
+
+/* les ligne du hambuger  */
 .line{
     display: block;
     height: 4px;
@@ -91,6 +106,7 @@ body{
 }
 
 /* MENU TOOGLE  */
+/* permet de faire touner les bars des hamburger  */
 .rotate45--{
     transform: rotate(45deg);
 }
@@ -103,6 +119,7 @@ body{
 
 
 /* LOGO  */
+/* container des logo  */
 .logo_container{
     height: 100%;
     width: 70%;
@@ -113,6 +130,11 @@ body{
     font-weight: 400;
     font-size: 1.5em;
 }
+/* permet de fixer le .logo_container */
+.fixed{
+    position: fixed;
+}
+
 .a---{
     display: flex;
     align-items: center;
@@ -140,6 +162,7 @@ body{
     display: none;
 }
 
+/* permet d'afficher le menu  */
 .menuFlex{
     display: flex;
     backdrop-filter: blur(10px);
@@ -147,11 +170,10 @@ body{
     background: #ff0a5360;
     height: 90vh;
     width: 90%;
-    position: absolute;
-    top: 4em;
+    position: fixed;
+    top: 2em;
     left: 3em;
     z-index: 2;
-    /* animation: menuflex 10s cubic-bezier(0,.95,.98,.02); */
 }
 
 .navbar>div{
@@ -173,27 +195,16 @@ body{
 .navbar>div>span>a{
     text-decoration: none;
     color: #fff;
-    font-family: 'Moon Dance', cursive;
     font-weight: 400;
     font-size: 2em;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
-/* @keyframes menuflex {
-    0%{
-        
-    }
-    30%{
-        height: 4.5em;
-        width: 50%;
-    }
-    50%{
-        height: 4.5em;
-        width: 70%;
-    }
-    100%{
-        height: 90vh;
-        width: 90%;
-    }
-} */
 
 @media (max-width:768px) {
     .menu_toogle_container{
@@ -211,13 +222,17 @@ body{
     .logo_container{
         width: 90%;
     }
+    .a--- img{
+        width: 50%;
+        height: 50%;
+    }
 
     .menuFlex{
         width: 90%;
         top: 10%;
         left: 0em;
         width: 100%;
-        height: 100%;
+        height: 90%;
         backdrop-filter: blur(0px);
         -webkit-backdrop-filter: blur(0px);
         background: #ff0a53;
@@ -229,6 +244,7 @@ body{
     }
     .navbar>div>span{
         flex: 1;
+        width: 100%;
     }
 }
 
@@ -241,6 +257,7 @@ body{
     }
 }
 /* black_line */
+/* les lignes noirs  */
 .black_line{
     width: 100%;
     height: 15vh;
@@ -255,6 +272,8 @@ body{
     width: 2px;
     background: #000;
 }
+
+
 /* ABOUT */
 .about{
     height: auto;
@@ -350,8 +369,15 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* border-right: 1px solid #fff; */
+    font-weight: bold;
 }
+.underline{
+    width: 80%;
+    height: 0.1em;
+    background: #ff0a53;
+    display: none;
+}
+/* finalement inutilser  */
 .service_description{
     height: auto;
     width: 100%;
@@ -361,10 +387,10 @@ body{
 .service_desc{
     width: 100%;
     height: 20em;
-    /* display: none; */
-    display: flex;
+    display: none;
     flex-direction: row;
     margin-top: 1em;
+    transition: .3s cubic-bezier(.44,.36,.98,.02);
 }
 .desc_part{
     height: 100%;
@@ -421,10 +447,26 @@ body{
     background-repeat: no-repeat;
 }
 
+/* change les displays si necessaires */
+.flex{
+    display: flex;
+}
+.none{
+    display: none;
+}
+
 @media (max-width:768px) {
+    .first_line{
+        flex-wrap: wrap;
+        height: 15em;
+    }
+    .fisrt_line_item{
+        height: 33%;
+        width: 50%;
+    }
     .service_desc{
         flex-direction: column-reverse;
-        height: 40em;
+        height: 50em;
     }
     .desc_part{
         width: 100%;
