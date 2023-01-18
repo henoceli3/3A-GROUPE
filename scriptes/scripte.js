@@ -73,3 +73,58 @@ window.addEventListener('load', () => {
 carouselSelector.serviceSelector.forEach((service, index) => {
     service.addEventListener("click", handleServiceClick(index));
 });
+
+
+// l'effet de bounce sur les elements
+const ratio = .1
+
+const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: ratio
+}
+
+function handleIntersect(entries,observer){
+    entries.forEach(function(entry){
+        if(entry.intersectionRatio > ratio) {
+            entry.target.classList.remove('reveal')
+            observer.unobserve(entry.target)   
+        }
+    })
+}
+
+let observer = new IntersectionObserver(handleIntersect, options);
+document.querySelectorAll('.reveal').forEach(function(r){
+    observer.observe(r)
+})
+
+// faire le decompte des chiffres
+
+var cpt1 = 0, cpt2 = 0, cpt3 = 0; // Initialisation des compteurs
+var duree = 2; // Durée en seconde pendant laquel le compteur ira de 0 à 15
+
+//On utilise setInterval pour créer un intervalle régulier 
+
+var intervalId_1 = setInterval(function(){
+    cpt1++;
+    document.getElementById("cpt_number--1").innerHTML = cpt1;
+    if(cpt1 === 15) {
+        clearInterval(intervalId_1);
+    }
+}, (duree * 1000) / 15);
+
+var intervalId_2 = setInterval(function(){
+    cpt2++;
+    document.getElementById("cpt_number--2").innerHTML = cpt2;
+    if(cpt2 === 30) {
+        clearInterval(intervalId_2);
+    }
+}, (duree * 1000) / 30);
+
+var intervalId_3 = setInterval(function(){
+    cpt3++;
+    document.getElementById("cpt_number--3").innerHTML = cpt3;
+    if(cpt3 === 60) {
+        clearInterval(intervalId_3);
+    }
+}, (duree * 1000) / 60);

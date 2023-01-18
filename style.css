@@ -1,7 +1,10 @@
 /* fonts familly  */
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
 @import url('https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Moon+Dance&family=Raleway:wght@700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
 
 :root {
@@ -37,7 +40,7 @@ body{
 
 /* l'entete de la page  */
 .header{
-    background: url(assets/image_processing20230113-20695-1hkyjf6.png);
+    background: url(assets/1.png);
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -282,6 +285,10 @@ body{
     flex-direction: column;
     margin-right: 10%;
     margin-left: 10%;
+    background: url(assets/5.jpg);
+    background-size: cover;
+    background-position: center;
+    color: #fff;
 }
 .Why-us_h2{
     font-size: 4em;
@@ -471,5 +478,78 @@ body{
     .desc_part{
         width: 100%;
         height: 50%;
+    }
+}
+
+
+/* l'effet de bounce sur les elements */
+.reveal [class*="reveal-"]{
+    opacity: 0 !important;
+    transform: translateY(30px) !important;
+}
+[class*="reveal-"]{
+    transition: .5s ease-in-out;
+}
+
+.reveal-2{
+    transition-delay: .1s;
+}
+.reveal-3{
+    transition-delay: .2s;
+}
+.reveal-4{
+    transition-delay: .3s;
+}
+
+/* les chiffres de la societe  */
+
+.chiffres{
+    height: auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+.chiffres_title{
+    width: 100%;
+    height: auto;
+    text-align: start;
+}
+.chiffres_items_container{
+    height: 20em;
+    width: 100%;
+    background: url(assets/3.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: row;
+}
+.chiffres_items{
+    height: 100%;
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto Mono', monospace;
+    color: #fff;
+}
+.chiffres_items>h2{
+    font-size: 3em;
+}
+
+@media (max-width:768px) {
+    .chiffres_items_container{
+        flex-direction: column;
+        height: auto;
+    }
+    .chiffres_items{
+        height: 15em;
+        width: 100%;
+        margin-bottom: 1em;
+    }
+    .chiffres_items h2{
+        text-align: center;
     }
 }
