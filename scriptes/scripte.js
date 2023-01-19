@@ -146,68 +146,43 @@ explore.addEventListener('mouseleave',function(){
 
 // carouselle du header 
 
-const header_carousselle_selector = {
+const HEADER_SELECTOR = {
     header: document.querySelector('#header'),
     previouse: document.querySelector('#controleur_previouse'),
-    next : document.querySelector('#controleur_next'),
-    bottom_selector: document.querySelectorAll('.controleur__')
+    next: document.querySelector('#controleur_next'),
+    bottom: document.querySelectorAll('.controleur__')
+};
+
+const HEADER_DATA = {
+    currentIndex: 0,
+    backgroundClass: ["header_backg_1", "header_backg_2", "header_backg_3"],
+    length: 3
+};
+
+window.addEventListener('load', () => {
+    HEADER_SELECTOR.header.classList.add(HEADER_DATA.backgroundClass[0]);
+    HEADER_SELECTOR.bottom[0].classList.add("bottom_controleurs_selected");
+});
+
+HEADER_SELECTOR.next.addEventListener('click', () => next());
+HEADER_SELECTOR.previouse.addEventListener('click', () => previouse());
+
+function next() {
+    const prevIndex = HEADER_DATA.currentIndex;
+    HEADER_DATA.currentIndex = (HEADER_DATA.currentIndex + 1) % HEADER_DATA.length;
+    updateHeader(prevIndex);
 }
 
-const headerCarousseleData = {
-    activeIndex : 0,
-    indexed:0,
-    backgroundClass: ["header_backg_1","header_backg_2","header_backg_3"],
+function previouse() {
+    const prevIndex = HEADER_DATA.currentIndex;
+    HEADER_DATA.currentIndex = (HEADER_DATA.currentIndex - 1 + HEADER_DATA.length) % HEADER_DATA.length;
+    updateHeader(prevIndex);
 }
 
-window.addEventListener('load',() => {
-    header_carousselle_selector.header.classList.add('header_backg_1');
-    header_carousselle_selector.bottom_selector[0]
-    .classList.add("bottom_controleurs_selected")
-})
+function updateHeader(prevIndex) {
+    HEADER_SELECTOR.header.classList.remove(HEADER_DATA.backgroundClass[prevIndex]);
+    HEADER_SELECTOR.bottom[prevIndex].classList.remove("bottom_controleurs_selected");
 
-header_carousselle_selector.next.addEventListener('click', next)
-
-header_carousselle_selector.previouse.addEventListener('click', previouse)
-
-function next(){
-    headerCarousseleData.indexed = headerCarousseleData.activeIndex; /*qui estait affiché */
-    headerCarousseleData.activeIndex++; /*afficher le prochain */
-
-    if(headerCarousseleData.activeIndex > 2){ /*s'assurer de ne pas monter au dela de 2*/
-        headerCarousseleData.activeIndex = 2;
-    }
-
-    mainHeaderCaroussel();/*suprimer et ajouter les classes adequates*/ 
-
-    headerCarousseleData.indexed = headerCarousseleData.activeIndex; /* actualiser qui etait afficher */
-}
-
-function previouse(){
-    headerCarousseleData.indexed = headerCarousseleData.activeIndex; /*qui estait affiché */
-
-    headerCarousseleData.activeIndex--;  /*afficher le prcedant */
-
-    if(headerCarousseleData.activeIndex < 0){ /*s'assurer de ne pad descendre en dessous de  */
-        headerCarousseleData.activeIndex = 0;
-    }
-
-    mainHeaderCaroussel(); /*suprimer et ajouter les classes adequates*/ 
-
-    headerCarousseleData.indexed = headerCarousseleData.activeIndex; /* actualiser qui etait afficher */
-}
-
-function mainHeaderCaroussel(){
-    header_carousselle_selector.header.classList.remove( /* suprimer l'ancienne classe */
-        headerCarousseleData.backgroundClass[headerCarousseleData.indexed]
-    )
-    header_carousselle_selector.bottom_selector[headerCarousseleData.indexed]
-    .classList.remove("bottom_controleurs_selected")
-
-    
-
-    header_carousselle_selector.header.classList.add( /* ajouter la class suivant */
-        headerCarousseleData.backgroundClass[headerCarousseleData.activeIndex]
-    );
-    header_carousselle_selector.bottom_selector[headerCarousseleData.activeIndex]
-    .classList.add("bottom_controleurs_selected")
+    HEADER_SELECTOR.header.classList.add(HEADER_DATA.backgroundClass[HEADER_DATA.currentIndex]);
+    HEADER_SELECTOR.bottom[HEADER_DATA.currentIndex].classList.add("bottom_controleurs_selected");
 }
