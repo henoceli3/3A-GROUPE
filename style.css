@@ -285,10 +285,10 @@ body{
     flex-direction: column;
     margin-right: 10%;
     margin-left: 10%;
-    background: url(assets/5.jpg);
+    /* background: url(assets/5.jpg); */
     background-size: cover;
     background-position: center;
-    color: #fff;
+    /* color: #fff; */
 }
 .Why-us_h2{
     font-size: 4em;
