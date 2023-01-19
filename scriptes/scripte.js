@@ -99,32 +99,115 @@ document.querySelectorAll('.reveal').forEach(function(r){
 })
 
 // faire le decompte des chiffres
-
-var cpt1 = 0, cpt2 = 0, cpt3 = 0; // Initialisation des compteurs
-var duree = 2; // Durée en seconde pendant laquel le compteur ira de 0 à 15
-
+const compteurData = {
+    cpt1 : 0, 
+    cpt2 : 0, 
+    cpt3 : 0,
+    duree : 2, // Durée en seconde pendant laquel le compteur ira de 0 à 15
+}
 //On utilise setInterval pour créer un intervalle régulier 
 
+
 var intervalId_1 = setInterval(function(){
-    cpt1++;
-    document.getElementById("cpt_number--1").innerHTML = cpt1;
-    if(cpt1 === 15) {
+    compteurData.cpt1++;
+    document.getElementById("cpt_number--1").innerHTML = compteurData.cpt1;
+    if(compteurData.cpt1 === 15) {
         clearInterval(intervalId_1);
     }
-}, (duree * 1000) / 15);
+}, (compteurData.duree * 1000) / 15);
 
 var intervalId_2 = setInterval(function(){
-    cpt2++;
-    document.getElementById("cpt_number--2").innerHTML = cpt2;
-    if(cpt2 === 30) {
+    compteurData.cpt2++;
+    document.getElementById("cpt_number--2").innerHTML = compteurData.cpt2;
+    if(compteurData.cpt2 === 30) {
         clearInterval(intervalId_2);
     }
-}, (duree * 1000) / 30);
+}, (compteurData.duree * 1000) / 30);
 
 var intervalId_3 = setInterval(function(){
-    cpt3++;
-    document.getElementById("cpt_number--3").innerHTML = cpt3;
-    if(cpt3 === 60) {
+    compteurData.cpt3++;
+    document.getElementById("cpt_number--3").innerHTML = compteurData.cpt3;
+    if(compteurData.cpt3 === 60) {
         clearInterval(intervalId_3);
     }
-}, (duree * 1000) / 60);
+}, (compteurData.duree * 1000) / 60);
+
+
+// l'effet du explore sur le header 
+
+const explore = document.querySelector('#explore');
+
+explore.addEventListener('mouseover',function(){
+    explore.classList.add('exploremouseover');
+})
+explore.addEventListener('mouseleave',function(){
+    explore.classList.remove('exploremouseover');
+})
+
+// carouselle du header 
+
+const header_carousselle_selector = {
+    header: document.querySelector('#header'),
+    previouse: document.querySelector('#controleur_previouse'),
+    next : document.querySelector('#controleur_next'),
+    bottom_selector: document.querySelectorAll('.controleur__')
+}
+
+const headerCarousseleData = {
+    activeIndex : 0,
+    indexed:0,
+    backgroundClass: ["header_backg_1","header_backg_2","header_backg_3"],
+}
+
+window.addEventListener('load',() => {
+    header_carousselle_selector.header.classList.add('header_backg_1');
+    header_carousselle_selector.bottom_selector[0]
+    .classList.add("bottom_controleurs_selected")
+})
+
+header_carousselle_selector.next.addEventListener('click', next)
+
+header_carousselle_selector.previouse.addEventListener('click', previouse)
+
+function next(){
+    headerCarousseleData.indexed = headerCarousseleData.activeIndex; /*qui estait affiché */
+    headerCarousseleData.activeIndex++; /*afficher le prochain */
+
+    if(headerCarousseleData.activeIndex > 2){ /*s'assurer de ne pas monter au dela de 2*/
+        headerCarousseleData.activeIndex = 2;
+    }
+
+    mainHeaderCaroussel();/*suprimer et ajouter les classes adequates*/ 
+
+    headerCarousseleData.indexed = headerCarousseleData.activeIndex; /* actualiser qui etait afficher */
+}
+
+function previouse(){
+    headerCarousseleData.indexed = headerCarousseleData.activeIndex; /*qui estait affiché */
+
+    headerCarousseleData.activeIndex--;  /*afficher le prcedant */
+
+    if(headerCarousseleData.activeIndex < 0){ /*s'assurer de ne pad descendre en dessous de  */
+        headerCarousseleData.activeIndex = 0;
+    }
+
+    mainHeaderCaroussel(); /*suprimer et ajouter les classes adequates*/ 
+
+    headerCarousseleData.indexed = headerCarousseleData.activeIndex; /* actualiser qui etait afficher */
+}
+
+function mainHeaderCaroussel(){
+    header_carousselle_selector.header.classList.remove( /* suprimer l'ancienne classe */
+        headerCarousseleData.backgroundClass[headerCarousseleData.indexed]
+    )
+    header_carousselle_selector.bottom_selector[headerCarousseleData.indexed]
+    .classList.remove("bottom_controleurs_selected")
+
+    
+
+    header_carousselle_selector.header.classList.add( /* ajouter la class suivant */
+        headerCarousseleData.backgroundClass[headerCarousseleData.activeIndex]
+    );
+    header_carousselle_selector.bottom_selector[headerCarousseleData.activeIndex]
+    .classList.add("bottom_controleurs_selected")
+}
